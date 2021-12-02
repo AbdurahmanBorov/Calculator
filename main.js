@@ -55,19 +55,34 @@ class Calculator {
       if (isNaN(prev) || isNaN(current)) return;
       switch (this.operation) {
         case '+':
-          computation = prev + current
+          computation = prev + current;
+          if(prev % 1 !== 0 && current % 1 !==0){
+            const prevLength = (prev % 1).toString().length - 2;
+            const currentLenth = (prev % 1).toString().length - 2;
+            computation = computation.toFixed(Math.max(prevLength, currentLenth));
+          }
           break;
         case '-':
-          computation = prev - current
+          computation = prev - current;
           break;
         case '*':
-          computation = prev * current
+          computation = prev * current;
+          if(prev % 1 !== 0 && current % 1 !==0){
+            const prevLength = (prev % 1).toString().length - 2;
+            const currentLenth = (prev % 1).toString().length - 2;
+            computation = computation.toFixed(Math.max(prevLength - currentLenth));
+          }
           break;
         case '/':
-          computation = prev / current
+          computation = prev / current;
           break;
         case '^':
-          computation = prev ** current
+          computation = prev ** current;
+          if(prev % 1 !== 0 && current % 1 !==0){
+            const prevLength = (prev % 1).toString().length - 2;
+            const currentLenth = (prev % 1).toString().length - 2;
+            computation = computation.toFixed(Math.max(prevLength * currentLenth));
+          }
           break;  
         default:
           return;
